@@ -15,6 +15,12 @@ const CONSTANTS = {
     PRODUCT_EXISTING: {
         ID: 1
     },
+    RULE_NEW: {
+        CODE: "TEST-CASE"
+    },
+    RULE_EXISTING: {
+        CODE: "BLACK-FRIDAY"
+    },
 }
 
 /**
@@ -46,5 +52,23 @@ describe('Testing that application can be created and executed',
             expect(
                 app.scan(CONSTANTS.PRODUCT_EXISTING.ID)
             ).to.be.true;
+        });
+        it('should show ERROR when a non existing product is scanned', () => {
+            const app = new CheckoutApp();
+            expect(
+                app.scan(CONSTANTS.PRODUCT_NEW.ID)
+            ).to.be.false;
+        });
+        it('should allow to apply a discount rule', () => {
+            const app = new CheckoutApp();
+            expect(
+                app.setRules([CONSTANTS.RULE_EXISTING.CODE])
+            ).to.be.true;
+        });
+        it('should show ERROR when applying a non existing discount rule', () => {
+            const app = new CheckoutApp();
+            expect(
+                app.setRules([CONSTANTS.RULE_NEW.CODE])
+            ).to.be.false;
         });
     });

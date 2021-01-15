@@ -13,9 +13,7 @@ export class ProductPort implements ProductDatabaseAdapter {
      * Retrieves a product based on a given id.
      */
     public getProductById(id: number) {
-        return this.database.products.find(
-            product => product.id === id
-        );
+        return this.database.products.find(product => product.id === id);
     }
 
     /**
