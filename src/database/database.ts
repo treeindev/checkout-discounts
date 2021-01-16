@@ -64,7 +64,7 @@ export class Database {
             code: "BLACK-FRIDAY",
             type: "percentage_reduction",
             values: {
-                minimum_cost: 20,
+                minimum_cost: 0,
                 discount_value: 10
             }
         },

@@ -4,12 +4,15 @@ import { ProductPort } from "./database/product-port";
 import { Rule } from "./interfaces/rules";
 import { RuleService } from "./services/rule.service";
 import { RulePort } from "./database/rule-port";
+import { CheckoutService } from "./services/checkout-service";
+import { Checkout } from "./interfaces/checkout";
 
 export class CheckoutApp {
     public products: Array<Product> = [];
     public rules: Array<Rule> = [];
     private productService = new ProductService(new ProductPort());
     private ruleService = new RuleService(new RulePort());
+    private checkoutService = new CheckoutService();
 
     /**
      * Method used to add a new product to the system.
@@ -58,7 +61,15 @@ export class CheckoutApp {
      * This method outputs the final cost of the current checkout execution.
      */
     public result() {
-        // TODO: Call to checkout service.
-        console.log(this.products, this.rules);
+        // console.log(this.products, this.rules);
+        try {
+            const result = this.checkoutService.applyRules(this.products, this.rules);
+            console.log(`The total checkout price is: ${result.cost} €`);
+            result.messages.map(message => console.log(message));
+            return true;
+        } catch(e) {
+            console.error(e);
+            return false;
+        }
     }
 }

@@ -13,6 +13,10 @@ describe('Testing that application can be created and executed',
             expect(app).to.be.an.instanceof(CheckoutApp);
             expect(app).to.have.property("products");
             expect(app).to.have.property("productService");
+            expect(app).to.have.property("rules");
+            expect(app).to.have.property("ruleService");
+            expect(app).to.have.property("checkoutService");
+            expect(app).to.have.property("result");
         });
         it('should allow to add a new product', () => {
             const app = new CheckoutApp();
@@ -50,5 +54,19 @@ describe('Testing that application can be created and executed',
             expect(
                 app.setRules([CONSTANTS.RULE_NEW.CODE])
             ).to.be.false;
+        });
+        it('should allow to scan and checkout a set of products', () => {
+            const app = new CheckoutApp();
+            app.scan(CONSTANTS.PRODUCT_EXISTING.ID);
+            app.setRules([CONSTANTS.RULE_EXISTING.CODE]);
+            const result = app.result();
+            expect(result).to.be.true;
+        });
+        it('should show ERROR when checking out an invalid discount rule', () => {
+            const app = new CheckoutApp();
+            app.scan(CONSTANTS.PRODUCT_EXISTING.ID);
+            expect(app.setRules([CONSTANTS.RULE_NEW.CODE]));
+            const result = app.result();
+            expect(result).to.be.false;
         });
     });
