@@ -60,13 +60,12 @@ describe('Testing that application can be created and executed',
             app.scan(CONSTANTS.PRODUCT_EXISTING.ID);
             app.setRules([CONSTANTS.RULE_EXISTING.CODE]);
             const result = app.result();
-            expect(result).to.be.true;
+            expect(result).not.to.be.undefined;
         });
         it('should show ERROR when checking out an invalid discount rule', () => {
             const app = new CheckoutApp();
-            app.scan(CONSTANTS.PRODUCT_EXISTING.ID);
             expect(app.setRules([CONSTANTS.RULE_NEW.CODE]));
             const result = app.result();
-            expect(result).to.be.false;
+            expect(result).to.be.equal(0);
         });
     });

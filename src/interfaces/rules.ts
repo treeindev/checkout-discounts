@@ -8,7 +8,7 @@ export interface Rule {
 }
 
 export interface RuleExecuter {
-    execute(checkout: Checkout, products: Array<Product>, rule: any): Checkout;
+    execute(checkout: Checkout, rule: any): Checkout;
 }
 
 export interface RuleDatabaseAdapter {

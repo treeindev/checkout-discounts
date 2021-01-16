@@ -20,25 +20,25 @@ export class Database {
         {
             id: 3,
             type: "Pizza",
-            price: 5.01,
+            price: 5,
             name: "Deluxe Vegan" 
         },
         {
             id: 4,
             type: "Shirt",
-            price: 10,
+            price: 10.50,
             name: "Blue stripes"
         },
         {
             id: 5,
             type: "Shirt",
-            price: 10,
+            price: 23.89,
             name: "Red clean"
         },
         {
             id: 6,
             type: "Shirt",
-            price: 10,
+            price: 12.54,
             name: "Yellow Shapes"
         },
     ];

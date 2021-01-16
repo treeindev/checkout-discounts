@@ -64,9 +64,9 @@ export class CheckoutApp {
         // console.log(this.products, this.rules);
         try {
             const result = this.checkoutService.applyRules(this.products, this.rules);
-            console.log(`The total checkout price is: ${result.cost} €`);
+            console.log(`The total checkout price is: ${result.getTotal()} €`);
             result.messages.map(message => console.log(message));
-            return true;
+            return result.getTotal();
         } catch(e) {
             console.error(e);
             return false;

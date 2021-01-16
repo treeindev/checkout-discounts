@@ -1,16 +1,16 @@
 import { Checkout } from "../interfaces/checkout";
-import { Product } from "../interfaces/products";
-import { Rule, RuleExecuter } from "../interfaces/rules";
+import { Rule } from "../interfaces/rules";
+import { RuleExecuter } from "../interfaces/rules";
 
-export class FreeProduct implements RuleExecuter {
+export class CostReduction implements RuleExecuter {
     /**
-     * Executes a free product promotion.
+     * Executes a cost reduction discount.
      */
     public execute(checkout: Checkout, rule: Rule): Checkout {
         // The provided rule must have a valid format.
         if (!rule.values.hasOwnProperty("type") || 
             !rule.values.hasOwnProperty("minimum_items") || 
-            !rule.values.hasOwnProperty("free_units")) {
+            !rule.values.hasOwnProperty("new_cost")) {
             throw(`The ${rule.code} rule has invalid values, please review them and try again.`);
         }
 
@@ -29,11 +29,8 @@ export class FreeProduct implements RuleExecuter {
         for (const [type, number] of Object.entries(purchase)) {
             // @ts-ignore
             if (number >= rule.values.minimum_items) {
-                checkout.messages.push(`You are getting ${rule.values.free_units} ${type} for free!`);
-                
-                // Add new product to the checkout collection.
-                const newProduct: any = checkout.products.find(product => product.type === type);
-                checkout.products.push(newProduct);
+                // TODO: Implement new price
+                checkout.messages.push(`New price for ${type}! All for: ${rule.values.new_cost} €`);
             }
         }
 

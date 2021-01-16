@@ -21,37 +21,39 @@ export class CheckoutService {
      * The checkout state is calculated per each rule and returned.
      */
     public applyRules(products:Array<Product>, rules:Array<Rule>): Checkout {
-        if (!rules || rules.length === 0) {
+        /*if (!rules || rules.length === 0) {
             throw("Invalid rules provided, please review and try again.");
-        }
+        }*/
+
         // The initial checkout state has the full cost of the products.
         // The discount is going to be applied by each given rule.
         let checkout: Checkout = {
-            cost: this.calculateCost(products),
-            messages: []
+            cost: this.calculateCost(products, 0),
+            discount: 0,
+            products: products,
+            messages: [],
+            getTotal: function() {
+                const cost = this.cost - this.discount;
+                // The following formula is used to ensure values like 1.005 round correctly.
+                return Math.round((cost + Number.EPSILON) * 100) / 100;
+            }
         };
         rules.map(rule => {
             if (!this.available_rules[rule.type]) {
                 throw (`Invalid rule type: ${rule.type}`);
             }
-            checkout = this.available_rules[rule.type].execute(checkout, products, rule);
+            checkout = this.available_rules[rule.type].execute(checkout, rule);
         });
+
+        checkout.cost = this.calculateCost(checkout.products, checkout.discount)
         
-        return this.roundCost(checkout);
+        return checkout;
     }
 
     /**
      * Calculates the cost amount of a given products.
      */
-    private calculateCost(products:Array<Product>): number {
+    private calculateCost(products:Array<Product>, discount: number): number {
         return products.reduce((accumulator, product) => accumulator + product.price, 0)
-    }
-
-    /**
-     * The following formula is used to ensure values like 1.005 round correctly.
-     */
-    private roundCost(checkout: Checkout): Checkout {
-        checkout.cost = Math.round((checkout.cost + Number.EPSILON) * 100) / 100;
-        return checkout;
     }
 }
