@@ -13,24 +13,22 @@ import { CheckoutApp } from "./app";
 const checkout = new CheckoutApp();
 
 // Addition of a new product to the system.
-// The database sample has products up to ID 6.
-checkout.add(7, "shirt", "Red Collection", 3.99);
+// The database sample has products up to ID 6, so new ID must be higher.
+checkout.add(7, "Shirt", "New Red Collection", 3.99);
 
 // Scanning a products is done by passing a product ID.
 // A product can be scanned multiple times.
+checkout.scan(4);
+checkout.scan(5);
+checkout.scan(4);
 checkout.scan(1);
-checkout.scan(2);
-checkout.scan(3);
-checkout.scan(7);
 
 // Addition of discount rules to the checkout. Multiple rules can be added.
 // It is important to note that rules are applied in the given order.
 // Changing the order will change the final cost.
 checkout.setRules([
-    "2021-PROMOTION",
-    "2020-SALES",
+    "OPPORTUNITY",
     "BLACK-FRIDAY",
-    "2021-EUROPE"
 ]);
 
 // Final to return the result of the execution.

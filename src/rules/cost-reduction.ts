@@ -30,12 +30,14 @@ export class CostReduction implements RuleExecuter {
             // @ts-ignore
             if (number >= rule.values.minimum_items) {
                 // TODO: Implement new price
-                checkout.messages.push(`New price for ${type}! All for: ${rule.values.new_cost} €`);
+                checkout.products = checkout.products.map(product => {
+                    if (product.type !== type) {return product;}
+                    product.price = rule.values.new_cost;
+                    return product;
+                })
+                checkout.messages.push(`New price for ${type}, all items for: ${rule.values.new_cost}€!`);
             }
         }
-
-        // This discount rule does not change the cost of the checkout,
-        // It gives a free product message instead.
         return checkout;
     }
 }

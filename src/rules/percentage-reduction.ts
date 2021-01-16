@@ -13,11 +13,11 @@ export class PercentageReduction implements RuleExecuter {
         
         // In order to apply this discount rule,
         // the total cost must be higher than the defined minimum. 
-        if (checkout.cost < rule.values.minimum_cost) {
+        if (checkout.getProductCost() < rule.values.minimum_cost) {
             return checkout;
         }
 
-        checkout.discount = checkout.cost * rule.values.discount_value / 100;
+        checkout.discount += checkout.getProductCost() * rule.values.discount_value / 100;
         checkout.messages.push(`You are getting a ${rule.values.discount_value}% discount!`);
         return checkout;
     }

@@ -20,7 +20,7 @@ export class CheckoutApp {
     public add(id: number, type: string, name: string, price: number) {
         try {
             this.productService.addProduct(id, type, name, price);
-        } catch(e) { console.error(e); }
+        } catch(e) { console.error(e); return false;}
     }
 
     /**
@@ -33,10 +33,7 @@ export class CheckoutApp {
                 this.productService.getById(productId)
             );
             return true;
-        } catch(e) { 
-            console.error(e);
-            return false;
-        }
+        } catch(e) { console.error(e); return false; }
     }
 
     /**
@@ -50,10 +47,7 @@ export class CheckoutApp {
             );
             this.rules = [...this.rules, ...rules];
             return true;
-        } catch(e) {
-            console.error(e);
-            return false;
-        }
+        } catch(e) { console.error(e); return false; }
     }
 
     /**
@@ -64,12 +58,9 @@ export class CheckoutApp {
         // console.log(this.products, this.rules);
         try {
             const result = this.checkoutService.applyRules(this.products, this.rules);
-            console.log(`The total checkout price is: ${result.getTotal()} €`);
+            console.log(`The total checkout price is: ${result.getTotal()}€`);
             result.messages.map(message => console.log(message));
             return result.getTotal();
-        } catch(e) {
-            console.error(e);
-            return false;
-        }
+        } catch(e) { console.error(e); return false; }
     }
 }

@@ -31,6 +31,16 @@ describe('Testing that application can be created and executed',
                 app.products.find(product => product.id === CONSTANTS.PRODUCT_NEW.ID)
             ).to.be.an.instanceof(Object);
         });
+        it('should show ERROR when adding a new product with existing ID', () => {
+            const app = new CheckoutApp();
+            const result = app.add(
+                CONSTANTS.PRODUCT_EXISTING.ID,
+                CONSTANTS.PRODUCT_NEW.TYPE,
+                CONSTANTS.PRODUCT_NEW.NAME,
+                CONSTANTS.PRODUCT_NEW.PRICE
+            );
+            expect(result).to.be.false;
+        });
         it('should allow to scan an existing product', () => {
             const app = new CheckoutApp();
             expect(

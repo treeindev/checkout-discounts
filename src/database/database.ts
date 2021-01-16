@@ -64,7 +64,7 @@ export class Database {
             code: "BLACK-FRIDAY",
             type: "percentage_reduction",
             values: {
-                minimum_cost: 0,
+                minimum_cost: 10,
                 discount_value: 10
             }
         },
@@ -72,7 +72,7 @@ export class Database {
             code: "2021-EUROPE",
             type: "free_product",
             values: {
-                type: 'pizza',
+                type: 'Pizza',
                 minimum_items: 3,
                 free_units: 2
             }
@@ -81,7 +81,7 @@ export class Database {
             code: "OPPORTUNITY",
             type: "cost_reduction",
             values: {
-                type: 'shirt',
+                type: 'Shirt',
                 minimum_items: 2,
                 new_cost: 5
             }

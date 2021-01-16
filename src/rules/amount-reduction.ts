@@ -15,7 +15,7 @@ export class AmountReduction implements RuleExecuter {
         
         // In order to apply this discount rule,
         // the total cost must be higher than the defined minimum. 
-        if (checkout.cost < rule.values.minimum_cost) {
+        if (checkout.getProductCost() < rule.values.minimum_cost) {
             return checkout;
         }
 

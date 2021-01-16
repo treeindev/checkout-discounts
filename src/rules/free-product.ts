@@ -32,7 +32,9 @@ export class FreeProduct implements RuleExecuter {
                 checkout.messages.push(`You are getting ${rule.values.free_units} ${type} for free!`);
                 
                 // Add new product to the checkout collection.
-                const newProduct: any = checkout.products.find(product => product.type === type);
+                // New product is a clone from an existing product type.
+                const newProduct: any = {...checkout.products.find(product => product.type === type)};
+                newProduct.price = 0;
                 checkout.products.push(newProduct);
             }
         }
