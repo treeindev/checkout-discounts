@@ -1,27 +1,7 @@
 import { CheckoutApp } from '../src/app';
 import { expect } from 'chai';
+import { CONSTANTS } from './mocks';
 import 'mocha';
-
-/**
- * The constats that can be reused across the testing script.
- */
-const CONSTANTS = {
-    PRODUCT_NEW: {
-        ID: 999,
-        TYPE: "test",
-        NAME: "testing product",
-        PRICE: 3.55
-    },
-    PRODUCT_EXISTING: {
-        ID: 1
-    },
-    RULE_NEW: {
-        CODE: "TEST-CASE"
-    },
-    RULE_EXISTING: {
-        CODE: "BLACK-FRIDAY"
-    },
-}
 
 /**
  * Here we are testing the functionality of the application as a single unit.
