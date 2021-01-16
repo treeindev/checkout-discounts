@@ -1,4 +1,4 @@
-import { CheckoutApp } from "../app";
+import { CheckoutApp } from "./app";
 
 /**
  * This is a sample execution of the system.
@@ -19,7 +19,8 @@ checkout.scan(7);
 // Addition of discount rules to the checkout.
 // Multiple rules can be added simultaneously.
 checkout.setRules([
-    "2021-PROMOTION"
+    "2021-PROMOTION",
+    "2020-SALES"
 ]);
 
 // Final to return the result of the execution.
