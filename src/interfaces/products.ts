@@ -5,7 +5,7 @@ export interface Product {
     price: number;
 }
 
-export interface ProductDatabaseAdapter {
-    getProductById: Function;
-    addProduct: Function;
+export interface ProductDatabasePort {
+    getProductById(id: number): any;
+    addProduct(product: Product): void;
 }

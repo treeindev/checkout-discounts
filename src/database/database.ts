@@ -15,7 +15,7 @@ export class Database {
             id: 2,
             type: "Pizza",
             price: 5.01,
-            name: "Pizza Marganita" 
+            name: "Pizza Margherita" 
         },
         {
             id: 3,

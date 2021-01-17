@@ -11,7 +11,7 @@ export interface RuleExecuter {
     execute(checkout: Checkout, rule: any): Checkout;
 }
 
-export interface RuleDatabaseAdapter {
-    getRuleByCode: Function;
-    addRule: Function;
+export interface RuleDatabasePort {
+    getRuleByCode(code: string): any;
+    addRule(rule: Rule): void;
 }

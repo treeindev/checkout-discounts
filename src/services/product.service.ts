@@ -1,4 +1,4 @@
-import { Product, ProductDatabaseAdapter } from "../interfaces/products";
+import { Product, ProductDatabasePort } from "../interfaces/products";
 
 /**
  * This service handles the logic related to products.
@@ -6,9 +6,9 @@ import { Product, ProductDatabaseAdapter } from "../interfaces/products";
  * It uses interfaces to specify the required methods to fetch data.
  */
 export class ProductService {
-    private database: ProductDatabaseAdapter;
+    private database: ProductDatabasePort;
 
-    constructor(database: ProductDatabaseAdapter) {
+    constructor(database: ProductDatabasePort) {
         this.database = database;
     }
 

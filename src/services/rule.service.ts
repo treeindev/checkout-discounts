@@ -1,4 +1,4 @@
-import { Rule, RuleDatabaseAdapter } from "../interfaces/rules";
+import { Rule, RuleDatabasePort } from "../interfaces/rules";
 
 /**
  * This service handles the logic related to rules.
@@ -6,9 +6,9 @@ import { Rule, RuleDatabaseAdapter } from "../interfaces/rules";
  * It uses interfaces to specify the required methods to fetch data.
  */
 export class RuleService {
-    private database: RuleDatabaseAdapter;
+    private database: RuleDatabasePort;
 
-    constructor(adapter: RuleDatabaseAdapter) {
+    constructor(adapter: RuleDatabasePort) {
         this.database = adapter;
     }
 

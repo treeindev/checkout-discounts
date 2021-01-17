@@ -1,12 +1,12 @@
-import { ProductDatabaseAdapter } from "../interfaces/products";
+import { ProductDatabasePort } from "../interfaces/products";
 import { Database } from "./database";
 
 /**
  * This is port that is used to connect to the inner layers of the system.
  * The Port exposes a set of methods that can be used to fetch data.
- * In a real project, this class would generate the string Queries to be passed to database.
+ * In a real project, this class would generate the string Queries to be passed to database class.
  */
-export class ProductPort implements ProductDatabaseAdapter {
+export class ProductAdapter implements ProductDatabasePort {
     private database = new Database();
 
     /**

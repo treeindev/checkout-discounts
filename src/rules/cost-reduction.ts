@@ -29,7 +29,6 @@ export class CostReduction implements RuleExecuter {
         for (const [type, number] of Object.entries(purchase)) {
             // @ts-ignore
             if (number >= rule.values.minimum_items) {
-                // TODO: Implement new price
                 checkout.products = checkout.products.map(product => {
                     if (product.type !== type) {return product;}
                     product.price = rule.values.new_cost;

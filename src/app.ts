@@ -1,17 +1,16 @@
 import { Product } from "./interfaces/products";
 import { ProductService } from "./services/product.service";
-import { ProductPort } from "./database/product-port";
+import { ProductAdapter } from "./database/product-adapter";
 import { Rule } from "./interfaces/rules";
 import { RuleService } from "./services/rule.service";
-import { RulePort } from "./database/rule-port";
+import { RuleAdapter } from "./database/rule-adapter";
 import { CheckoutService } from "./services/checkout-service";
-import { Checkout } from "./interfaces/checkout";
 
 export class CheckoutApp {
     public products: Array<Product> = [];
     public rules: Array<Rule> = [];
-    private productService = new ProductService(new ProductPort());
-    private ruleService = new RuleService(new RulePort());
+    private productService = new ProductService(new ProductAdapter());
+    private ruleService = new RuleService(new RuleAdapter());
     private checkoutService = new CheckoutService();
 
     /**
