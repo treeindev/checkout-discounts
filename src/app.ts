@@ -11,7 +11,7 @@ export class CheckoutApp {
     public rules: Array<Rule> = [];
     private productService = new ProductService(new ProductAdapter());
     private ruleService = new RuleService(new RuleAdapter());
-    private checkoutService = new CheckoutService();
+    private checkoutService = new CheckoutService(this.ruleService);
 
     /**
      * Method used to add a new product to the system.

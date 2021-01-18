@@ -1,18 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CheckoutService = void 0;
-var amount_reduction_1 = require("../rules/amount-reduction");
-var cost_reduction_1 = require("../rules/cost-reduction");
-var free_product_1 = require("../rules/free-product");
-var percentage_reduction_1 = require("../rules/percentage-reduction");
 var CheckoutService = /** @class */ (function () {
-    function CheckoutService() {
-        this.available_rules = {
-            amount_reduction: new amount_reduction_1.AmountReduction(),
-            percentage_reduction: new percentage_reduction_1.PercentageReduction(),
-            free_product: new free_product_1.FreeProduct(),
-            cost_reduction: new cost_reduction_1.CostReduction()
-        };
+    function CheckoutService(rules) {
+        this.ruleService = rules;
     }
     /**
      * Applies given set of rules to a given products.
@@ -38,10 +29,8 @@ var CheckoutService = /** @class */ (function () {
             }
         };
         rules.map(function (rule) {
-            if (!_this.available_rules[rule.type]) {
-                throw ("Invalid rule type: " + rule.type);
-            }
-            checkout = _this.available_rules[rule.type].execute(checkout, rule);
+            var executer = _this.ruleService.getRuleExecutor(rule.type);
+            checkout = executer.execute(checkout, rule);
         });
         return checkout;
     };

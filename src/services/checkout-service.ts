@@ -1,21 +1,12 @@
 import { Checkout } from "../interfaces/checkout";
 import { Product } from "../interfaces/products";
-import { Rule } from "../interfaces/rules";
-import { AmountReduction } from "../rules/amount-reduction";
-import { CostReduction } from "../rules/cost-reduction";
-import { FreeProduct } from "../rules/free-product";
-import { PercentageReduction } from "../rules/percentage-reduction";
+import { Rule, RuleServiceModel } from "../interfaces/rules";
 
 export class CheckoutService {
-    private available_rules: any;
+    private ruleService: RuleServiceModel;
 
-    constructor() {
-        this.available_rules = {
-            amount_reduction: new AmountReduction(),
-            percentage_reduction: new PercentageReduction(),
-            free_product: new FreeProduct(),
-            cost_reduction: new CostReduction()
-        }
+    constructor(rules: RuleServiceModel) {
+        this.ruleService = rules;
     }
 
     /**
@@ -41,10 +32,8 @@ export class CheckoutService {
             }
         };
         rules.map(rule => {
-            if (!this.available_rules[rule.type]) {
-                throw (`Invalid rule type: ${rule.type}`);
-            }
-            checkout = this.available_rules[rule.type].execute(checkout, rule);
+            const executer = this.ruleService.getRuleExecutor(rule.type);
+            checkout = executer.execute(checkout, rule);
         });
         
         return checkout;

@@ -1,9 +1,9 @@
 import { Checkout } from "../interfaces/checkout";
 import { Product } from "../interfaces/products";
 import { Rule } from "../interfaces/rules";
-import { RuleExecuter } from "../interfaces/rules";
+import { RuleExecutor } from "../interfaces/rules";
 
-export class AmountReduction implements RuleExecuter {
+export class AmountReduction implements RuleExecutor {
     /**
      * Executes an amount reduction discount.
      */

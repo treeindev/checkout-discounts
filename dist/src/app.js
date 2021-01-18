@@ -19,7 +19,7 @@ var CheckoutApp = /** @class */ (function () {
         this.rules = [];
         this.productService = new product_service_1.ProductService(new product_adapter_1.ProductAdapter());
         this.ruleService = new rule_service_1.RuleService(new rule_adapter_1.RuleAdapter());
-        this.checkoutService = new checkout_service_1.CheckoutService();
+        this.checkoutService = new checkout_service_1.CheckoutService(this.ruleService);
     }
     /**
      * Method used to add a new product to the system.

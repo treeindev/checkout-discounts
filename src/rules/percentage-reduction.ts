@@ -1,7 +1,7 @@
 import { Checkout } from "../interfaces/checkout";
-import { Rule, RuleExecuter } from "../interfaces/rules";
+import { Rule, RuleExecutor } from "../interfaces/rules";
 
-export class PercentageReduction implements RuleExecuter {
+export class PercentageReduction implements RuleExecutor {
     /**
      * Executes a percentage reduction discount.
      */

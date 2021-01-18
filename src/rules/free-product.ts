@@ -1,8 +1,8 @@
 import { Checkout } from "../interfaces/checkout";
 import { Product } from "../interfaces/products";
-import { Rule, RuleExecuter } from "../interfaces/rules";
+import { Rule, RuleExecutor } from "../interfaces/rules";
 
-export class FreeProduct implements RuleExecuter {
+export class FreeProduct implements RuleExecutor {
     /**
      * Executes a free product promotion.
      */
