@@ -26,18 +26,20 @@ Typescript is compiled to JavaScript on each `npm run start`, the compilation fi
 
 To include a custom checkout modify the `src/index.ts` file. You can scan any product by passing in an the product ID. Scanning a non-existing product ID outputs an error.
 
-There are two ways to adding products:
-1. At runtime. Add the following on the `src/index.ts` file: 
+There are two ways of creating new products on the system:
+1) At runtime. This will create a new product for the current execution. Add the following on the `src/index.ts` file: 
 ```bash
 checkout.add(7, "Shirt", "New Red Collection", 3.99)
 ```
-This adds a new product for the current execution.
-2. On file-based database. Add a new product object to the database class located at: `src/database/database.ts`. This ensures the product will be available on all executions.
+
+2) On file-based database. Add a new product object to the database class located at: `src/database/database.ts`. This ensures the product will be available on all executions.
+
+Once a product is created, it will be available for scanning.
 
 To add a new rule:
 1. Define a unique code to identify the rule.
 1. Review the existing rule types as each rule has an associated type. 
-2. Once you find a rule type that matches your expectations, modify the `values` property to accomodate to your needs.
+2. Once you find a rule type that matches your expectations, modify the `values` property to accommodate to your needs.
 3. Example:
 ```bash
 {
